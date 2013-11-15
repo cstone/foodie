@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'simple_form'
 gem 'font-awesome-rails'
+gem 'turbolinks'
+gem 'jquery-turbolinks'
 
 
 # Bundle edge Rails instead:
