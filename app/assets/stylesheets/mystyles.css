@@ -1,0 +1,120 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background-color:#cccccc;
+	margin: 90px 0 40px;
+	/*background:url(file:///C|/Users/Stone/Desktop/dist/img/background.jpg) no-repeat #0097FF;*/
+	background: url(file:///C|/Users/Stone/Desktop/dist/img/grey_wash_wall.png) repeat;
+	/*background-size: 100%;*/
+}
+
+.containermargintop {
+	margin-top: 80px;
+}
+
+.container {
+	/*background-color:#F0F0F0;*/
+	background-color:#FFFFFF;
+	color:#000000;	
+}
+
+/*.containershadow {
+	-webkit-box-shadow:  4px 4px 6px 1px rgba(68, 68, 68, .5);
+        
+        box-shadow:  4px 4px 6px 1px rgba(68, 68, 68, .5);
+}*/
+
+.containerbg {
+	background-color:#00B4FF;
+	
+}
+#contentsection {
+	padding:10px 15px 30px;
+}
+#adrow {
+	background-color:#00B4FF;
+	padding:30px;
+	text-align:center;
+}
+#footer {
+	background-color:#444444;
+	color:#FFFFFF;
+	padding:15px 30px;
+	/*border-bottom:2px solid #00B4FF;*/
+}
+
+#footer a {
+	color:#00B4FF;
+}
+
+#footer ul
+{
+    list-style-type: none;
+	padding:0;
+}
+
+#footer ul li {
+	margin-bottom:5px;
+}
+
+#footer hr {
+	border-color: #666;
+}
+
+blockquote {
+  background-color: #FFFFFF;
+  border-left-color: #EEEEEE;
+  color: #ADB0B2;
+}
+
+.whitetext {
+	color:#FFFFFF;
+}
+
+
+.fancypadding {
+	padding:15px 30px;
+}
+
+
+	
+
+.leftcolor {
+	background-color: #F0F0F0;
+}
+
+.rightcolumn {
+	color:#FFFFFF;
+}
+
+.sidebg {
+	background-color:#F0F0F0;
+	color:#FFFFFF;
+}
+
+.nopadding {
+	padding-left:0;
+	padding-right:0;
+}
+
+.navbar-default {
+background-color: #FFFFFF;
+border-color: #fff;
+}
+
+.navbar-fixed-top {
+top: 0;
+border-width: 0 0 3px;
+border-color: #00B4FF;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	background-color:#00B4FF;
+	color:#FFFFFF;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+color: #FFFFFF;
+background-color: #00B4FF;
+}
