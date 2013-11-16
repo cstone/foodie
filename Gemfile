@@ -5,6 +5,7 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
+gem 'devise'
 
 
 # Bundle edge Rails instead:
