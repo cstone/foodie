@@ -1,8 +1,19 @@
 Foodie::Application.routes.draw do
 
+  root :to => 'articles#home'
+
   devise_for :users
 
-  root :to => "articles#index"
+  resources :articles
+
+  match '/blog', to: 'articles#index', as: 'blog'
+
+
+
+
+
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

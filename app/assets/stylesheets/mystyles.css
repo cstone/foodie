@@ -5,7 +5,7 @@ body {
 	background-color:#cccccc;
 	margin: 90px 0 40px;
 	/*background:url(file:///C|/Users/Stone/Desktop/dist/img/background.jpg) no-repeat #0097FF;*/
-	background: url(file:///C|/Users/Stone/Desktop/dist/img/grey_wash_wall.png) repeat;
+	background: url(https://s3.amazonaws.com/whatsafoodie/structure/grey_wash_wall.png) repeat;
 	/*background-size: 100%;*/
 }
 

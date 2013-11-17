@@ -1,0 +1,39 @@
+<div class="row" id="footer">
+  <div class="row">
+    <div class="col-md-3">
+      <h4>About</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus     consectetur magna eget nisl fermentum semper. Donec ultricies nunc eu     ultrices adipiscing. In hendrerit laoreet eros nec porttitor. Aliquam in     egestas neque. Nam laoreet nisl id nibh auctor fringilla.</p>
+      <p>Donec ultricies nunc eu     ultrices adipiscing. In hendrerit laoreet eros nec porttitor. Aliquam in     egestas neque. Nam laoreet nisl id nibh auctor fringilla.</p>
+    </div>
+    <div class="col-md-3">
+      <h4>Recent Posts</h4>
+      <ul>
+      <% @recentarticles.each do |article| %>
+         <li><%= link_to article.title, article %> <%= time_ago_in_words(article.created_at) %> ago</li>
+      <% end %>
+        </ul>
+    </div>
+    <div class="col-md-3">
+      <h4>Share</h4>
+      <p>Drag widgets here to remove them from the sidebar but keep their settings.     </p>
+    </div>
+    <div class="col-md-3 text-center">
+      <br/>
+      <%= render 'layouts/structure/googleads/footersquaread' %>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-8">
+      <p>© <%= Time.now.year %> WhatsAFoodie.com - All rights reserved. A <%= link_to('Stizel', '#', html_options = { target: 'blank', rel: 'external'}) %> company.</p>
+    </div>
+    <div class="col-md-4 text-right">
+      <a href="#" target="_blank" rel="external">Privacy</a> | <a href="#" target="_blank" rel="external">Terms</a>
+      <a href="http://entiri.com/neodym_wp/pages/about-us/#" target="_blank" rel="external"> </a> | <a href="#" target="_blank" rel="external">Terms</a> <a href="http://entiri.com/neodym_wp/pages/about-us/#" target="_blank" rel="external"> </a> | <a href="#" target="_blank" rel="external">Terms</a></div>
+  </div>
+
+</div>
+
+
