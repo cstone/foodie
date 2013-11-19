@@ -1,0 +1,6 @@
+<% @articles.each do |article| %>
+    <h2><%= link_to_unless_current article.title, article %></h2>
+    <p><%= truncate(simple_format(article.body), length: 450).html_safe %></p>
+    <p>Posted <%= time_ago_in_words(article.created_at) %> ago by <%= article.user.name %></p>
+    <hr>
+<% end %>

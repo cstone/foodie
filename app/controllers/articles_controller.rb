@@ -2,11 +2,17 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
 
-  before_filter :getuser, :only => [:new, :createo]
-  before_filter :getrecentarticles
+  before_filter :authenticate_user!, :except => :show
+  before_filter :authorized_user, :only => [:destroy,:edit ]
+  before_filter :set_article_id, :only => [:show, :update]
+  #before_filter :get_user
+  #before_filter :get_recent_articles
+  #before_filter :check_auth, :only => [:edit]
 
 
   def index
+    #@articles = Article.all
+    #@articles = Article.where(:user_id => current_user.id).order('created_at DESC')
     @articles = Article.all
 
     respond_to do |format|
@@ -29,7 +35,8 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   # GET /articles/new.json
   def new
-    @article = Article.new
+    #@article = Article.where(:user_id => current_user.id).new
+    @article = current_user.articles.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,14 +46,16 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
+      @article = Article.find(params[:id])
   end
 
   # POST /articles
   # POST /articles.json
   def create
-
-    @article = Article.new(params[:article])
+    #@article = @user.articles.build(params[:article])
+    #@article = Article.new(params[:article])
+    #@article.user_id = current_user.id
+    @article = current_user.articles.build(params[:article])
 
     respond_to do |format|
       if @article.save
@@ -62,7 +71,8 @@ class ArticlesController < ApplicationController
   # PUT /articles/1
   # PUT /articles/1.json
   def update
-    @article = Article.find(params[:id])
+    #@article = Article.find(params[:id])
+    #@article = current_user.articles.update_attributes(params[:article])
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
@@ -78,8 +88,9 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    @article = Article.find(params[:id])
+    #@article = Article.find(params[:id])
     @article.destroy
+    redirect_to root_path, :flash => { :success => "Micropost deleted!" }
 
     respond_to do |format|
       format.html { redirect_to articles_url }
@@ -88,25 +99,33 @@ class ArticlesController < ApplicationController
   end
 
 
-  def home
-    @articles = Article.featuredposts.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @articles }
-    end
-  end
-
 
 
 
  private
 
-  def getuser
-    @user = User.find(params[:user_id])
+  #def get_user
+  #  @user = current_user
+  #end
+
+  def set_article_id
+    @article = Article.find(params[:id])
   end
 
-  def getrecentarticles
+  def get_recent_articles
     @recentarticles = Article.recent_posts
   end
+
+  #def check_auth
+  #  if session[:id] != @article.user_id
+  #    flash[:notice] = "Sorry you can't edit this article."
+  #    redirect_to(@article)
+  #  end
+  #end
+
+  def authorized_user
+    @article = current_user.articles.find_by_id(params[:id])
+    redirect_to root_path if @article.nil?
+  end
+
 end

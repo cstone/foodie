@@ -2,6 +2,7 @@ class Article < ActiveRecord::Base
   attr_accessible :body, :published, :title, :user_id, :featured
 
   validates_presence_of :title, :body
+  validates :user_id, :presence => true
 
   belongs_to :user
 
@@ -22,6 +23,10 @@ class Article < ActiveRecord::Base
   def owned_by?(owner)
     return false unless owner.is_a? User
     user == owner
+  end
+
+  def to_param
+    "#{id}-#{title.gsub(/[ ]+/i, '-')}"
   end
 
 

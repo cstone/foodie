@@ -43,8 +43,17 @@
       ------------------------------------------------>
       <div class="col-md-9">
         <%= yield %>
-
+        <br>
+        Params
+        <%= debug params %>
+        User
+        <%= debug @user %>
+        Users
+        <%= debug @users %>
+        Articles
         <%= debug @articles %>
+        Article
+        <%= debug @article %>
       </div>
 
 

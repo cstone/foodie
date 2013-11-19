@@ -1,12 +1,20 @@
 Foodie::Application.routes.draw do
 
-  root :to => 'articles#home'
+  #match '/blog/:user_id' => 'articles#show', :as => :blog
+  match 'blog' => 'articles#index', :as => 'blog'
 
+
+  root :to => 'home#index'
+
+  #devise_for :users, :path => 'accounts'
   devise_for :users
+
 
   resources :articles
 
-  match '/blog', to: 'articles#index', as: 'blog'
+  resources :pages
+
+
 
 
 
@@ -70,5 +78,5 @@ Foodie::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  match ':controller(/:action(/:id))(.:format)'
 end

@@ -5,7 +5,7 @@
   <%= simple_format(@article.body) %>
 </p>
 <p>
-  <%= time_ago_in_words(@article.created_at) %> ago by <%= @article.user.email %>
+  <%= time_ago_in_words(@article.created_at) %> ago by <%= @article.user.name %>
 </p>
 
 
