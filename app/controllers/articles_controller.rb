@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
     #@articles = Article.all
     #@articles = Article.where(:user_id => current_user.id).order('created_at DESC')
     if params[:tag]
-      @articles = Article.tagged_with(params[:tag])
+      @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(10)
     else
       @articles = Article.order('created_at DESC').page(params[:page]).per(10)
     end
