@@ -6,9 +6,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
-  # attr_accessible :title, :body
 
-  has_many :articles, :dependent => :nullify
+  has_many :articles, :order => 'published_at DESC, title ASC',
+           :dependent => :nullify
+  has_one :profile
 
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -26,5 +27,9 @@ class User < ActiveRecord::Base
   # SEO Friendly URLs
   def to_param
     "#{id}-#{name.gsub(/[ ]+/i, '-')}"
+  end
+
+  def to_s
+    name
   end
 end

@@ -4,11 +4,17 @@
 <p>
   <%= simple_format(@article.body) %>
 </p>
+<% unless @article.tag_list.empty? %>
+    <p>
+      Tags: <%= @article.tag_list %>
+    </p>
+<% end %>
 <p>
   <%= time_ago_in_words(@article.created_at) %> ago by <%= @article.user.name %>
 </p>
 
 
-
+<% if current_user.id == @article.user_id %>
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
+<% end %>

@@ -2,10 +2,10 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
 
-  before_filter :authenticate_user!, :except => :show
-  before_filter :authorized_user, :only => [:destroy,:edit ]
-  before_filter :set_article_id, :only => [:show, :update]
-  #before_filter :get_user
+  before_filter :authenticate_user!, :except => [:show, :index]
+  #before_filter :authorized_user, :only => [:destroy,:edit ]
+  before_filter :set_article, :only => :show
+  before_filter :get_user
   #before_filter :get_recent_articles
   #before_filter :check_auth, :only => [:edit]
 
@@ -13,7 +13,11 @@ class ArticlesController < ApplicationController
   def index
     #@articles = Article.all
     #@articles = Article.where(:user_id => current_user.id).order('created_at DESC')
-    @articles = Article.all
+    if params[:tag]
+      @articles = Article.tagged_with(params[:tag])
+    else
+      @articles = Article.order('created_at DESC').page(params[:page]).per(10)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,7 +40,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.json
   def new
     #@article = Article.where(:user_id => current_user.id).new
-    @article = current_user.articles.new
+    @article = @user.articles.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,7 +50,12 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-      @article = Article.find(params[:id])
+    @article = Article.find(params[:id])
+
+    if @article.user_id != current_user.id
+      flash[:message] = 'You are not the owner of this article.'
+       redirect_to articles_path
+    end
   end
 
   # POST /articles
@@ -73,6 +82,7 @@ class ArticlesController < ApplicationController
   def update
     #@article = Article.find(params[:id])
     #@article = current_user.articles.update_attributes(params[:article])
+    @article = Article.where(:user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
@@ -92,6 +102,11 @@ class ArticlesController < ApplicationController
     @article.destroy
     redirect_to root_path, :flash => { :success => "Micropost deleted!" }
 
+    if @article.user_id != current_user.id
+      flash[:message] = 'You are not the owner of this article.'
+      redirect_to articles_path
+    end
+
     respond_to do |format|
       format.html { redirect_to articles_url }
       format.json { head :no_content }
@@ -100,15 +115,14 @@ class ArticlesController < ApplicationController
 
 
 
-
-
  private
+  # Get the current user
+  def get_user
+    @user = current_user
+  end
 
-  #def get_user
-  #  @user = current_user
-  #end
-
-  def set_article_id
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
     @article = Article.find(params[:id])
   end
 
@@ -123,9 +137,11 @@ class ArticlesController < ApplicationController
   #  end
   #end
 
-  def authorized_user
-    @article = current_user.articles.find_by_id(params[:id])
-    redirect_to root_path if @article.nil?
-  end
+  #def authorized_user
+  #  @article = current_user.articles.find_by_id(params[:id])
+  #  redirect_to root_path if @article.nil?
+  #end
+
+
 
 end

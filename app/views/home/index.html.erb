@@ -1,6 +1,10 @@
 <% @articles.each do |article| %>
-    <h2><%= link_to_unless_current article.title, article %></h2>
+    <h3><%= link_to_unless_current article.title, article %></h3>
     <p><%= truncate(simple_format(article.body), length: 450).html_safe %></p>
+    <% unless article.tag_list.empty? %>
+        <p>Tags: <%= raw article.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+    <% end %>
     <p>Posted <%= time_ago_in_words(article.created_at) %> ago by <%= article.user.name %></p>
     <hr>
 <% end %>
+<%= paginate @articles %>
