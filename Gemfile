@@ -6,9 +6,10 @@ gem 'font-awesome-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'devise'
-gem 'forem', :github => "radar/forem"
+gem 'forem', :github => 'radar/forem'
 gem 'kaminari'
 gem 'acts-as-taggable-on'
+gem 'punching_bag'
 
 
 # Bundle edge Rails instead:

@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
   attr_accessible :body, :published, :title, :user_id, :featured, :tag_list
   acts_as_taggable
+  acts_as_punchable
 
   validates_presence_of :title, :body
   validates_uniqueness_of :title

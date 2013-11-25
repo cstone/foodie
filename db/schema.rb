@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122222952) do
+ActiveRecord::Schema.define(:version => 20131125165558) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -137,6 +137,18 @@ ActiveRecord::Schema.define(:version => 20131122222952) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "punches", :force => true do |t|
+    t.integer  "punchable_id",                                :null => false
+    t.string   "punchable_type", :limit => 20,                :null => false
+    t.datetime "starts_at",                                   :null => false
+    t.datetime "ends_at",                                     :null => false
+    t.datetime "average_time",                                :null => false
+    t.integer  "hits",                         :default => 1, :null => false
+  end
+
+  add_index "punches", ["average_time"], :name => "index_punches_on_average_time"
+  add_index "punches", ["punchable_type", "punchable_id"], :name => "punchable_index"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
