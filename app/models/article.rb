@@ -15,6 +15,7 @@ class Article < ActiveRecord::Base
   scope :published, lambda { where(published: true) }
   scope :draft, lambda { where(published: false) }
   scope :featured, lambda { where(featured: true)}
+  scope :recent_featured, featured.limit(5)
   scope :recent, published.order(:created_at).limit(10)
   scope :recent_posts, published.order('created_at DESC').limit(5)
   scope :author,   proc {|author| where(:author => author) }

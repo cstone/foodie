@@ -44,6 +44,17 @@ body {
 	/*border-bottom:2px solid #00B4FF;*/
 }
 
+.my-list-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+
 #tag_cloud {
     line-height: 1.6em;  }
 .s { font-size: 0.8em; }

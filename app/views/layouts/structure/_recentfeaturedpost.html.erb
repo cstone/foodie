@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <% @recent_featured_articles.each do |article| %>
+      <li class="my-list-item"><%= link_to article.title, article %></li>
+  <% end %>
+</ul>

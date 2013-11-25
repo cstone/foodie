@@ -1,5 +1,5 @@
 <% @articles.each do |article| %>
- <h3><%= link_to_unless_current article.title, article %></h3>
+ <h4><%= link_to_unless_current article.title, article %></h4>
  <p><%= simple_format(article.body) %></p>
  <% unless article.tag_list.empty? %>
  <p>Tags: <%= raw article.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Foodie</title>
+  <title>BestFoodTruckEver.com</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "25f0478f-46eb-45ec-9b3a-4cde6fcd2082", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 </head>
 <body>
 
@@ -41,21 +44,8 @@
       -------------------------------------------------
       -------------------------------------------------
       ------------------------------------------------>
-      <div class="col-md-9" style="border-right: 1px solid rgb(238, 238, 238);">
+      <div class="col-md-9" >
         <%= yield %>
-
-        <br>
-
-        Params
-        <%= debug params %>
-        User
-        <%= debug @user %>
-        Users
-        <%= debug @users %>
-        Articles
-        <%= debug @articles %>
-        Article
-        <%= debug @article %>
       </div>
 
 
@@ -77,13 +67,23 @@
       -------------------------------------------------
       ------------------------------------------------>
       <div class="col-md-3">
+        <div class="row text-center">
+          <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922333_en_v0" alt="" height="auto">
+        </div>
+        <hr>
+        <h4>Recent Articles</h4>
+        <div class="row">
+          <%= render 'layouts/structure/recentfeaturedpost' %>
+        </div>
+        <hr>
+        <div class="row text-center">
+          <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922347_en_v0" alt="" height="auto">
+        </div>
+        <hr>
         <h4>Trending</h4>
         <div class="row text-center">
             <%= render 'layouts/structure/tagcloud' %>
         </div>
-        <hr>
-        <div class="row text-center"><img src="https://storage.googleapis.com/support-kms-prod/SNP_2922347_en_v0" alt="" height="auto"></div>
-
       </div>
       <!-----------------------------------------------
       -------------------------------------------------
