@@ -1,18 +1,24 @@
 <div class="row" id="footer">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <h4>About</h4>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus     consectetur magna eget nisl fermentum semper. Donec ultricies nunc eu     ultrices adipiscing. In hendrerit laoreet eros nec porttitor. Aliquam in     egestas neque. Nam laoreet nisl id nibh auctor fringilla.</p>
     </div>
-    <div class="col-md-4">
-      <h4>Recent Posts</h4>
+    <div class="col-md-3">
+      <h4>Recent Articles</h4>
       <% @recent_featured_articles.each do |article| %>
           <p><%= link_to article.title, article %></p>
       <% end %>
     </div>
-    <div class="col-md-4">
-      <h4>Popular Topics</h4>
+    <div class="col-md-3">
+      <h4>Trending</h4>
       <%= render 'layouts/structure/tagcloud' %>
+    </div>
+    <div class="col-md-3">
+      <h4>Popular Articles</h4>
+      <% @most_popular_articles.each do |article| %>
+          <p><%= link_to article.title, article %></p>
+      <% end %>
     </div>
   </div>
 

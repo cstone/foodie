@@ -46,6 +46,18 @@
       ------------------------------------------------>
       <div class="col-md-9" >
         <%= yield %>
+        <br>
+
+        Params
+        <%= debug params %>
+        User
+        <%= debug @user %>
+        Users
+        <%= debug @users %>
+        Articles
+        <%= debug @articles %>
+        Article
+        <%= debug @article %>
       </div>
 
 
@@ -67,20 +79,20 @@
       -------------------------------------------------
       ------------------------------------------------>
       <div class="col-md-3">
+        <div class="row">
+          <%= link_to 'Post New Article', new_article_path, :class => 'btn btn-info btn-lg btn-block' %>
+        </div>
+        <br>
+        <div class="row sidebox">
+          <%= render 'layouts/structure/footersharethis' %>
+        </div>
           <%= render 'layouts/structure/most_popular_articles' %>
-        <div class="row text-center">
+        <div class="row text-center sidebox">
           <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922333_en_v0" alt="" height="auto">
         </div>
-        <hr>
           <%= render 'layouts/structure/recentfeaturedpost' %>
-        <hr>
         <div class="row text-center">
           <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922347_en_v0" alt="" height="auto">
-        </div>
-        <hr>
-        <h4>Trending</h4>
-        <div class="row text-center">
-            <%= render 'layouts/structure/tagcloud' %>
         </div>
       </div>
       <!-----------------------------------------------
@@ -143,6 +155,17 @@
 
 
 
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'bestfoodtruckever'; // required: replace example with your forum shortname
 
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
 </body>
 </html>

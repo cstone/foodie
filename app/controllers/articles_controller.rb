@@ -6,19 +6,17 @@ class ArticlesController < ApplicationController
   #before_filter :authorized_user, :only => [:destroy,:edit ]
   before_filter :set_article, :only => :show
   before_filter :get_user
-  #before_filter :get_recent_articles
-  #before_filter :check_auth, :only => [:edit]
+  before_filter :require_permission, only: [:edit, :destroy]
+
 
 
   def index
-    #@articles = Article.all
     #@articles = Article.where(:user_id => current_user.id).order('created_at DESC')
     if params[:tag]
       @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(5)
     else
       @articles = Article.order('created_at DESC').page(params[:page]).per(5)
     end
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @articles }
@@ -51,12 +49,9 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
+    #@article = Article.find(params[:id])
+    @article = Article.where(:user_id => current_user.id).find(params[:id])
 
-    if @article.user_id != current_user.id
-      flash[:message] = 'You are not the owner of this article.'
-       redirect_to articles_path
-    end
   end
 
   # POST /articles
@@ -99,14 +94,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    #@article = Article.find(params[:id])
-    @article.destroy
-    redirect_to root_path, :flash => { :success => "Micropost deleted!" }
-
-    if @article.user_id != current_user.id
-      flash[:message] = 'You are not the owner of this article.'
-      redirect_to articles_path
-    end
+    @article = Article.where(:user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       format.html { redirect_to articles_url }
@@ -120,6 +108,13 @@ class ArticlesController < ApplicationController
   # Get the current user
   def get_user
     @user = current_user
+  end
+
+
+  def require_permission
+    if current_user != Article.find(params[:id]).user
+      redirect_to article_path
+    end
   end
 
   # Use callbacks to share common setup or constraints between actions.
