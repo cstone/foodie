@@ -5,11 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :username, :about
 
   has_many :articles, :order => 'published_at DESC, title ASC',
            :dependent => :nullify
-  has_one :profile
+  has_many :topics, :dependent => :destroy
+  has_many :posts, :dependent => :destroy
 
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -19,15 +20,16 @@ class User < ActiveRecord::Base
   validates :email, :presence => true,
             :format => { :with => email_regex },
             :uniqueness => { :case_sensitive => false }
-  validates :password, :presence => true,
-            :confirmation => true,
-            :length => { :within => 6..40 }
+
+  validates_uniqueness_of :username
 
 
   # SEO Friendly URLs
   def to_param
     "#{id}-#{name.gsub(/[ ]+/i, '-')}"
   end
+
+
 
   def to_s
     email

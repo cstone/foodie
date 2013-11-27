@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131127045626) do
+ActiveRecord::Schema.define(:version => 20131127210755) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -24,6 +24,26 @@ ActiveRecord::Schema.define(:version => 20131127045626) do
     t.string   "article_image"
   end
 
+  create_table "categories", :force => true do |t|
+    t.string   "title"
+    t.boolean  "state",      :default => true
+    t.integer  "position",   :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "forums", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "state",        :default => true
+    t.integer  "topics_count", :default => 0
+    t.integer  "posts_count",  :default => 0
+    t.integer  "position",     :default => 0
+    t.integer  "category_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.string   "permalink"
@@ -33,13 +53,11 @@ ActiveRecord::Schema.define(:version => 20131127045626) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "profiles", :force => true do |t|
+  create_table "posts", :force => true do |t|
+    t.text     "body"
+    t.integer  "forum_id"
+    t.integer  "topic_id"
     t.integer  "user_id"
-    t.date     "birthday"
-    t.string   "location"
-    t.string   "facebook"
-    t.string   "twitter"
-    t.text     "about"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -73,23 +91,40 @@ ActiveRecord::Schema.define(:version => 20131127045626) do
     t.string "name"
   end
 
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.integer  "hits",        :default => 0
+    t.boolean  "sticky",      :default => false
+    t.boolean  "locked",      :default => false
+    t.integer  "posts_count"
+    t.integer  "forum_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",               :null => false
-    t.string   "encrypted_password",     :default => "",               :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,                :null => false
+    t.integer  "sign_in_count",          :default => 0,  :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "name"
-    t.boolean  "forem_admin",            :default => false
-    t.string   "forem_state",            :default => "pending_review"
-    t.boolean  "forem_auto_subscribe",   :default => false
+    t.text     "about"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "location"
+    t.date     "birthday"
+    t.string   "username"
+    t.integer  "topics_count",           :default => 0
+    t.integer  "posts_count",            :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

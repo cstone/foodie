@@ -10,7 +10,7 @@ gem 'kaminari'
 gem 'acts-as-taggable-on'
 gem 'punching_bag'
 gem 'carrierwave'
-
+gem 'forum_monster'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -1,19 +1,23 @@
 Foodie::Application.routes.draw do
 
+  resources :categories, :except => [:index, :show]
+  resources :forums, :except => :index do
+    resources :topics, :shallow => true, :except => :index do
+      resources :posts, :shallow => true, :except => [:index, :show]
+    end
+    root :to => 'categories#index', :via => :get
+  end
+
   root :to => 'home#index'
 
   match 'blog' => 'articles#index', :as => 'blog'
-
 
   get 'tags/:tag', to: 'articles#index', as: :tag
 
 
   #devise_for :users, :path => 'accounts'
   devise_for :users
-
-  resources :users do
-    resources :profiles
-  end
+  match 'users/:id' => 'users#show', as: :user
 
   resources :pages
 
