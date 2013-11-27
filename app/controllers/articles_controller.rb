@@ -95,7 +95,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article = Article.where(:user_id => current_user.id).find(params[:id])
-
+    @article.destroy
     respond_to do |format|
       format.html { redirect_to articles_url }
       format.json { head :no_content }

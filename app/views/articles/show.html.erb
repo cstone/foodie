@@ -1,6 +1,7 @@
 <h3>
   <%= @article.title %>
 </h3>
+<p><%= image_tag @article.article_image_url.to_s %></p>
 <p>
   Posted <%= time_ago_in_words(@article.created_at) %> ago by <%= @article.user.name %>
 </p>

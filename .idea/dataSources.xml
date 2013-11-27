@@ -14,6 +14,12 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="Rails foodie: test" uuid="d72dd648-b28e-4d4a-a9b3-333e57d11f4f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Stone\RubymineProjects\foodie\db\test.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
   </component>
 </project>
 

@@ -1,7 +1,9 @@
 class Article < ActiveRecord::Base
-  attr_accessible :body, :published, :title, :user_id, :featured, :tag_list
+  attr_accessible :body, :published, :title, :user_id, :featured, :tag_list, :article_image
   acts_as_taggable
   acts_as_punchable
+
+  mount_uploader :article_image, ArticleImageUploader
 
   validates_presence_of :title, :body
   validates_uniqueness_of :title

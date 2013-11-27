@@ -20,9 +20,6 @@ Foodie::Application.routes.draw do
   resources :articles
 
 
-  mount Forem::Engine, :at => '/forums'
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
