@@ -2,8 +2,14 @@
   <%= @article.title %>
 </h3>
 <p>
-  Posted <%= time_ago_in_words(@article.created_at) %> ago by <%= @article.user.name %>
+  Posted <%= time_ago_in_words(@article.created_at) %> ago by <%= link_to @article.user.name, profile_path(@article.user) %> in <%= link_to @article.article_category.name, category_path(@article.article_category.name) %>
 </p>
+<% if @article.user_id == current_user.id %>
+    <p>
+      <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-info' %>
+      <%= link_to 'Delete', {:controller=>:articles,:action=>:destroy, :id=>@article}, class: 'btn btn-danger', :method=>:delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+<% end %>
 <hr>
 <% if !@article.article_image_url.to_s.empty? %>
 <p><%= image_tag @article.article_image_url.to_s %></p>
@@ -18,17 +24,7 @@
 </div>
 <% end %>
 
-<% if @article.user_id == current_user.id %>
-<div class="text-right">
-<table>
-      <tr>
-        <td><%= link_to 'Edit my article', edit_article_path(@article), class: 'btn btn-info' %> </td>
-        <td></td>
-        <td><%= link_to 'Delete this article', {:controller=>:articles,:action=>:destroy, :id=>@article}, class: 'btn btn-danger', :method=>:delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
- </table>
-</div>
-<% end %>
+
 
 <hr>
 <%= render 'layouts/structure/disqus' %>

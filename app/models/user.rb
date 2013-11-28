@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
 
   has_many :articles, :order => 'published_at DESC, title ASC',
            :dependent => :nullify
-  has_many :topics, :dependent => :destroy
-  has_many :posts, :dependent => :destroy
 
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

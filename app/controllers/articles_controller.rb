@@ -4,7 +4,6 @@ class ArticlesController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:show, :index]
   #before_filter :authorized_user, :only => [:destroy,:edit ]
-  before_filter :set_article, :only => :show
   before_filter :get_user
   before_filter :require_permission, only: [:edit, :destroy]
 
@@ -117,21 +116,10 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_article
-    @article = Article.find(params[:id])
-  end
 
   def get_recent_articles
     @recentarticles = Article.recent_posts
   end
-
-  #def check_auth
-  #  if session[:id] != @article.user_id
-  #    flash[:notice] = "Sorry you can't edit this article."
-  #    redirect_to(@article)
-  #  end
-  #end
 
   #def authorized_user
   #  @article = current_user.articles.find_by_id(params[:id])

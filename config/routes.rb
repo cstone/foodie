@@ -1,5 +1,10 @@
 Foodie::Application.routes.draw do
 
+  get "profiles/show"
+
+  resources :article_categories
+
+
   resources :categories, :except => [:index, :show]
   resources :forums, :except => :index do
     resources :topics, :shallow => true, :except => :index do
@@ -14,10 +19,14 @@ Foodie::Application.routes.draw do
 
   get 'tags/:tag', to: 'articles#index', as: :tag
 
+  get 'category/:category', to: 'articles#index', as: :category
+
+  get 'profile/:id' => 'users#show', as: :profile
+
 
   #devise_for :users, :path => 'accounts'
   devise_for :users
-  match 'users/:id' => 'users#show', as: :user
+
 
   resources :pages
 

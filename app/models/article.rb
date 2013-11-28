@@ -1,15 +1,16 @@
 class Article < ActiveRecord::Base
-  attr_accessible :body, :published, :title, :user_id, :featured, :tag_list, :article_image
+  attr_accessible :body, :published, :title, :user_id, :featured, :tag_list, :article_image, :article_category_id
   acts_as_taggable
   acts_as_punchable
 
   mount_uploader :article_image, ArticleImageUploader
 
-  validates_presence_of :title, :body
+  validates_presence_of :title, :body, :article_category
   validates_uniqueness_of :title
   validates :user_id, :presence => true
 
   belongs_to :user
+  belongs_to :article_category
 
   default_scope -> { order('created_at DESC') }
 
@@ -23,7 +24,7 @@ class Article < ActiveRecord::Base
   scope :recent_posts, published.order('created_at DESC').limit(5)
   scope :author,   proc {|author| where(:author => author) }
   scope :category, proc {|category| where(:category => category) }
-  scope :featuredposts, featured.order('created_at DESC')
+  scope :featured_posts, featured.order('created_at DESC')
 
 
 
