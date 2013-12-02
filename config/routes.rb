@@ -1,17 +1,13 @@
 Foodie::Application.routes.draw do
 
-  get "profiles/show"
+
+  get "cats/index"
+
+  get "results/index"
+
+  get "search/index"
 
   resources :article_categories
-
-
-  resources :categories, :except => [:index, :show]
-  resources :forums, :except => :index do
-    resources :topics, :shallow => true, :except => :index do
-      resources :posts, :shallow => true, :except => [:index, :show]
-    end
-    root :to => 'categories#index', :via => :get
-  end
 
   root :to => 'home#index'
 
@@ -25,7 +21,7 @@ Foodie::Application.routes.draw do
 
 
   #devise_for :users, :path => 'accounts'
-  devise_for :users
+  devise_for :users,  controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
 
   resources :pages

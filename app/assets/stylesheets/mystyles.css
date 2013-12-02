@@ -29,6 +29,11 @@ body {
 	color:#000000;	
 }
 
+.toploginnav {
+    color: rgb(119, 119, 119);
+    padding-top: 15px;
+}
+
 /*.containershadow {
 	-webkit-box-shadow:  4px 4px 6px 1px rgba(68, 68, 68, .5);
         
@@ -69,6 +74,13 @@ body {
     padding: 12px;
     margin-bottom: 10px;
     background-color: #F8F8F8;
+}
+
+.whitebox {
+    border: 0px solid #eeeeee;
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
 }
 
 

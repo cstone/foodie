@@ -11,6 +11,7 @@
  *= require_self
  *= require bootstrap.min
  *= require mystyles
+ *= require font-awesome
  */
 
 @font-face {

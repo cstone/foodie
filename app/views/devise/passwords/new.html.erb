@@ -1,15 +1,13 @@
-<h2>Forgot your password?</h2>
+<div class="whitebox">
+  <h3>Forgot your password?</h3>
+  <hr>
 
-<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :class => 'form-inline', :method => :post }) do |f| %>
+      <%= f.error_notification %>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam semper eu lacus sit amet ullamcorper. Nullam sodales velit ut justo bibendum bibendum. In hac habitasse platea dictumst. Aliquam erat volutpat. Nulla egestas elementum purus et iaculis. Fusce nec nulla porta, dapibus leo vitae, pharetra risus. Suspendisse id dignissim leo, interdum blandit velit. Nam facilisis venenatis aliquet. Maecenas vulputate accumsan justo faucibus porta. Duis mattis lacus et luctus scelerisque. Phasellus blandit posuere nulla. Etiam quis interdum purus, et volutpat urna. </p>
+      <br>
+      <%= f.input :email, required: true, autofocus: true %><br><br>
 
-  <div class="form-inputs">
-    <%= f.input :email, :required => true, :autofocus => true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+      <%= f.button :submit, 'Reset my password', :class => 'btn btn-info' %>
+  <% end %>
+</div>

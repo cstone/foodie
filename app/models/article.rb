@@ -33,6 +33,18 @@ class Article < ActiveRecord::Base
   end
 
 
+  def self.search(search)
+    if search
+      #find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+      where("title LIKE :search OR body LIKE :search", {:search => "%#{search}%"})
+    else
+      find(:all)
+    end
+  end
+
+
+
+
 
   # Helpers
   def posts_by(author)

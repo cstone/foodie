@@ -1,5 +1,5 @@
 <% @articles.each do |article| %>
-    <h3><%= link_to_unless_current article.title, article %></h3>
+    <h4><%= link_to_unless_current article.title, article %></h4>
     <p>Posted <%= time_ago_in_words(article.created_at) %> ago by <%= link_to article.user.name, profile_path(article.user) %> in  <%= link_to article.article_category.name, category_path(article.article_category.name) %></p>
     <p><%= truncate(simple_format(article.body), length: 400).html_safe %></p>
     <% unless article.tag_list.empty? %>

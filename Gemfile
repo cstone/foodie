@@ -10,7 +10,10 @@ gem 'kaminari'
 gem 'acts-as-taggable-on'
 gem 'punching_bag'
 gem 'carrierwave'
-gem 'forum_monster'
+gem 'omniauth-twitter'
+gem 'figaro'
+gem 'font-awesome-rails'
+gem 'contact_us', '~> 0.4.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

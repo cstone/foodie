@@ -1,0 +1,21 @@
+<% @articles.each do |article| %>
+    <h4><%= link_to_unless_current article.title, article %></h4>
+    <% if !article.article_image_url.to_s.empty? %>
+        <p><%= image_tag article.article_image_url.to_s %></p>
+    <% end %>
+    <p><%= simple_format(article.body) %></p>
+    <% unless article.tag_list.empty? %>
+        <p class="sidebox">Tags: <%= raw article.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+    <% end %>
+    <table width="100%">
+      <tr>
+        <td>Posted <%= time_ago_in_words(article.created_at) %> ago by <%= link_to article.user.name, profile_path(article.user) %> in  <%= link_to article.article_category.name, category_path(article.article_category.name) %></td>
+        <td class="text-right"><%= link_to '0 Comments', article_path(article, anchor: "disqus_thread") %></td>
+      </tr>
+    </table>
+    <hr>
+<% end %>
+
+
+
+

@@ -1,26 +1,17 @@
-<%= simple_form_for @article, :html => { :class => 'form-inline', :multipart => true} do |f| %>
+<%= simple_form_for @article, :html => { multipart: true} do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-group">
 
-    <%= f.input :title %>
-
+    <%= f.input :title, class: 'form-control', placeholder: 'Please enter a title' %>
+    <hr>
     <%= f.input :body %>
-<br>
     <%= f.file_field :article_image %>
+    <br><br>
+    <p><%= f.input :published %></p>
 
-    <%= f.input :published %>
+    <p><%= f.association :article_category, collection: ArticleCategory.active.all(order: 'name'), label: 'Category', default: 'Please select a category' %></p>
+    <br><br>
+    <p><%= f.input :tag_list, label: 'Tags', placeholder: 'Separated by a comma' %></p>
 
-    <%= f.association :article_category, collection: ArticleCategory.active.all(order: 'name') %>
-
-    <%= f.input :featured %>
-
-    <%= f.input :tag_list %>
-
-
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <%= f.button :submit, class: 'btn btn-info' %>
 <% end %>
