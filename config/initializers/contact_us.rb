@@ -24,6 +24,5 @@ ContactUs.setup do |config|
   # config.form_gem = 'formtastic
   config.form_gem = 'simple_form'
 
-  config.success_redirect = '/pages/contact-success'
 
 end

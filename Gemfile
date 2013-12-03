@@ -9,11 +9,13 @@ gem 'devise'
 gem 'kaminari'
 gem 'acts-as-taggable-on'
 gem 'punching_bag'
+gem 'rmagick', '~>2.13.2', :require => 'RMagick'
 gem 'carrierwave'
 gem 'omniauth-twitter'
 gem 'figaro'
 gem 'font-awesome-rails'
 gem 'contact_us', '~> 0.4.0'
+gem 'fog'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
