@@ -4,8 +4,10 @@
 
     <%= f.input :title, class: 'form-control', placeholder: 'Please enter a title' %>
     <hr>
-    <%= f.input :body %>
+    <%= f.input :body, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} } %>
     <%= f.file_field :article_image %>
+    <%= image_tag @article.article_image_url(:thumb).to_s if !@article.article_image_url(:thumb).to_s.empty? %>
+    <%= f.check_box :remove_article_image %>
     <br><br>
     <p><%= f.input :published %></p>
 

@@ -1,6 +1,8 @@
 Foodie::Application.routes.draw do
 
 
+
+
   get "cats/index"
 
   get "results/index"
@@ -27,6 +29,8 @@ Foodie::Application.routes.draw do
   resources :pages
 
   resources :articles
+
+  mount Ckeditor::Engine => '/ckeditor'
 
 
   # The priority is based upon order of creation:

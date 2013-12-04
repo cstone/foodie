@@ -16,6 +16,8 @@ gem 'figaro'
 gem 'font-awesome-rails'
 gem 'contact_us', '~> 0.4.0'
 gem 'fog'
+gem 'mini_magick'
+gem 'ckeditor'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
