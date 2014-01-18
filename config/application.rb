@@ -67,6 +67,9 @@ module Foodie
 
     config.assets.initialize_on_precompile = false
 
+    #For CKeditor on heroku from here https://github.com/galetahub/ckeditor/issues/307#issuecomment-22186377
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    config.assets.precompile += Ckeditor.assets
+    config.assets.precompile += %w(ckeditor/*)
   end
 end

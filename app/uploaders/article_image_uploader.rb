@@ -35,10 +35,17 @@ class ArticleImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
- version :thumb do
-  #process :scale => [50, 50]
-  process :resize_to_limit => [200, 200]
- end
+  process :resize_to_limit => [500, 0]
+
+  version :blog_index_side do
+    process :resize_to_limit => [100,0]
+  end
+
+  version :blog_main do
+    process :resize_to_limit => [250,0]
+  end
+
+
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
