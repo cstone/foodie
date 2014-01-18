@@ -10,6 +10,8 @@ Ckeditor.setup do |config|
   # Set to nil or [] (empty array) for all file types
   config.image_file_types = ["jpg", "jpeg", "png", "gif", "tiff"]
 
+  config.assets = ["ckeditor/ckeditor.js", "ckeditor/ini.js"]
+
   # Allowed attachment file types for upload.
   # Set to nil or [] (empty array) for all file types
   # config.attachment_file_types = ["doc", "docx", "xls", "odt", "ods", "pdf", "rar", "zip", "tar", "swf"]
