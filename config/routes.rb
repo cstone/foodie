@@ -1,7 +1,5 @@
 Foodie::Application.routes.draw do
-
-
-
+  root :to => 'home#index'
 
   get "cats/index"
 
@@ -10,8 +8,6 @@ Foodie::Application.routes.draw do
   get "search/index"
 
   resources :article_categories
-
-  root :to => 'home#index'
 
   match 'blog' => 'articles#index', :as => 'blog'
 
